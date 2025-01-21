@@ -25,11 +25,13 @@ app.get('/', (c) => {
 app.post('/send/email', async (c) => {
 	const resend = new Resend(c.env.RESEND_API_KEY);
 
+	const body = await c.req.json<{ firstName: string; lastName: string; email: string }>();
+
 	const data = await resend.emails.send({
 		from: 'Josiah Code <test@josiahcode.com>',
 		to: ['josiah.becker21@gmail.com', 'brady8221@gmail.com'],
 		subject: 'Welcome to Josiah Code',
-		react: <WelcomeEmail firstName="Josiah" />,
+		react: <WelcomeEmail firstName={body.firstName} lastName={body.lastName} email={body.email} />,
 	});
 
 	return c.json(data);
