@@ -27,7 +27,7 @@ app.post('/send/email', async (c) => {
 
 	const data = await resend.emails.send({
 		from: 'Josiah Code <test@josiahcode.com>',
-		to: ['josiah.becker21@gmail.com'],
+		to: ['josiah.becker21@gmail.com', 'brady8221@gmail.com'],
 		subject: 'Welcome to Josiah Code',
 		react: <WelcomeEmail firstName="Josiah" />,
 	});
